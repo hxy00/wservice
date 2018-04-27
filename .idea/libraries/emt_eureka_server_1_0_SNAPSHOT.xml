@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="emt-eureka-server-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/emt-eureka-server/target/emt-eureka-server-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

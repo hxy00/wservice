@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/emt.iml" filepath="$PROJECT_DIR$/emt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-base/emt-base.iml" filepath="$PROJECT_DIR$/emt-base/emt-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-bpay-feign/emt-bpay-feign.iml" filepath="$PROJECT_DIR$/emt-bpay-feign/emt-bpay-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-bpay-server/emt-bpay-server.iml" filepath="$PROJECT_DIR$/emt-bpay-server/emt-bpay-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-bpay-service/emt-bpay-service.iml" filepath="$PROJECT_DIR$/emt-bpay-service/emt-bpay-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-bpay-web/emt-bpay-web.iml" filepath="$PROJECT_DIR$/emt-bpay-web/emt-bpay-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-bpay-webui/emt-bpay-webui.iml" filepath="$PROJECT_DIR$/emt-bpay-webui/emt-bpay-webui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-common/emt-common.iml" filepath="$PROJECT_DIR$/emt-common/emt-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-config-server/emt-config-server.iml" filepath="$PROJECT_DIR$/emt-config-server/emt-config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-epay-server/emt-epay-server.iml" filepath="$PROJECT_DIR$/emt-epay-server/emt-epay-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-eureka-server/emt-eureka-server.iml" filepath="$PROJECT_DIR$/emt-eureka-server/emt-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-gateway/emt-gateway.iml" filepath="$PROJECT_DIR$/emt-gateway/emt-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-task/emt-task.iml" filepath="$PROJECT_DIR$/emt-task/emt-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/emt-turbine/emt-turbine.iml" filepath="$PROJECT_DIR$/emt-turbine/emt-turbine.iml" />
+    </modules>
+  </component>
+</project>

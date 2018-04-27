@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+		<link rel="stylesheet" href="../../JSLib/bootstrap3/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../JSLib/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../../JSLib/Hui-iconfont/1.0.8/iconfont.css">
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../../JSLib/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css">
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/datatables/dataTables.bootstrap.css" />
+		<!-- bootstrap datepicker -->
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/datepicker/datepicker3.css">
+
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/select2/select2.min.css">
+
+		<script type="text/javascript" src="../../JSLib/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../JSLib/jquery.layout/jquery-ui-latest.js"></script>
+		<script type="text/javascript" src="../../JSLib/jquery.layout/jquery.layout-latest.js"></script>
+		<script type="text/jscript" src="../../JSLib/bootstrap3/js/bootstrap.js"></script>
+		<script type="text/javascript" src="../../JSLib/bootstrap3/js/closable-tab-div.js"></script>
+		<!-- bootstrap datepicker -->
+		<script src="../../JSLib/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
+		<script src="../../JSLib/AdminLTE/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+		<!-- Select2 -->
+		<script src="../../JSLib/AdminLTE/plugins/select2/select2.full.min.js"></script>
+		<script src="../../JSLib/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+		<script type="text/javascript" src="../../js/global.js"></script>
+		<script type="text/javascript" src="../../JSLib/FunctionJS.js"></script>
+	</head>
+
+	<body>
+		<div class="content-wrapper" style="margin-left: 0px;">
+			<section class="content-header">
+				<h1 class="box-title fa  fa-desktop">&nbsp;&nbsp;<b id="agencyNameLable">xxx</b>-<small id="payeeIdLable">xxx</small> </h1>
+				<!--				<ol class="breadcrumb">
+					<li>
+						<a href="#"><i class="fa fa-dashboard"></i> Home</a>
+					</li>
+					<li>
+						<a href="#">Tables</a>
+					</li>
+					<li class="active">Simple</li>
+				</ol>-->
+			</section>
+
+			<section class="content">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="box collapsed-box  box-success">
+							<div class="box-header with-border">
+								<h3 class="box-title">查询条件</h3>
+
+								<div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                    </button>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<form id="searchForm">
+								<div class="box-body">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>凭证号</label>
+												<input type="text" class="form-control" id="docCodeTxt" placeholder="请输入凭证号">
+											</div>
+											<!-- /.form-group -->
+											<div class="form-group">
+
+											</div>
+											<!-- /.form-group -->
+										</div>
+										<!-- /.col <-->
+										</-->
+										<div class="col-md-3">
+
+											<div class="form-group">
+												<label>凭证类型</label>
+												<select class="form-control select2" style="width: 100%;" id="docTypeSel">
+													<option value="" selected="selected">所有</option>
+													<optgroup label="收入">
+														<option value="01">订单收入</option>
+														<option value="03">提现失败</option>
+													</optgroup>
+													<optgroup label="支出">
+														<option value="02">提现</option>
+														<option value="04">违约罚款</option>
+													</optgroup>
+												</select>
+											</div>
+											<!-- /.form-group -->
+											<div class="form-group">
+
+											</div>
+											<!-- /.form-group -->
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>记帐时间段</label>
+												<div class="input-group">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input type="text" class="form-control pull-right" id="bDateTxt" readonly="readonly">
+												</div>
+											</div>
+											<div class="form-group">
+
+											</div>
+											<!-- /.form-group -->
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>&nbsp;</label>
+												<div class="input-group">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input type="text" class="form-control pull-right" id="eDateTxt" readonly="readonly">
+												</div>
+											</div>
+											<div class="form-group">
+
+											</div>
+											<!-- /.form-group -->
+										</div>
+										<!-- /.col -->
+
+									</div>
+									<div class="row">
+										<div class="col-md-9">
+											&nbsp;
+										</div>
+										<div class="col-md-3">
+
+											<div class="form-group" style="text-align: right;">
+												<button type="button" class="btn btn-primary btn-sm" onclick="search()"><span class="fa fa-search"
+                                                                                       aria-hidden="true"></span>&nbsp;查询   </button>
+												<button type="button" class="btn btn-danger btn-sm" onclick="reset1()"><span class="fa fa-refresh"
+                                                                                      aria-hidden="true"></span>&nbsp;重置  </button>
+											</div>
+											<!-- /.form-group -->
+										</div>
+									</div>
+									<!-- /.row -->
+								</div>
+							</form>
+							<!-- /.box-body -->
+							<div class="box-footer">
+
+							</div>
+						</div>
+						<!-- /.box -->
+
+						<div class="box box-primary">
+							<div class="box-header">
+
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<table id="currentTable" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>凭证号</th>
+											<!--  <th>经销商编号</th>-->
+											<th>摘要</th>
+											<th>收入</th>
+											<th>支出</th>
+											<th>余额</th>
+											<th>记帐时间</th>
+										</tr>
+									</thead>
+
+									<tfoot>
+
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<div class="col-md-3">
+						<div class="row" style="margin-right: 1px;">
+							<div class="box box-widget widget-user">
+								<!-- Add the bg color to the header using any of the bg-* classes -->
+								<div class="widget-user-header bg-aqua-active">
+									<h3 class="widget-user-username">资金状态</h3>
+									<h5 class="widget-user-desc"><span id="yearS"></span>年<span id="monthS"></span>月 </h5>
+								</div>
+								<div class="widget-user-image">
+									<img class="img-circle" src="../../images/bpay/money_title.jpg" alt="User Avatar">
+								</div>
+								<div class="box-footer">
+									<div class="row">
+										<div class="col-sm-4 border-right">
+											<div class="description-block">
+												<h5 class="description-header" id="banlanceH">¥0</h5>
+												<span class="description-text">当月结余</span>
+											</div>
+											<!-- /.description-block -->
+										</div>
+										<!-- /.col -->
+										<div class="col-sm-4 border-right">
+											<div class="description-block">
+												<h5 class="description-header" id="debitH">¥0</h5>
+												<span class="description-text">当月收入</span>
+											</div>
+											<!-- /.description-block -->
+										</div>
+										<!-- /.col -->
+										<div class="col-sm-4">
+											<div class="description-block">
+												<h5 class="description-header" id="creditH">¥0</h5>
+												<span class="description-text">当月支出</span>
+											</div>
+											<!-- /.description-block -->
+										</div>
+										<!-- /.col -->
+									</div>
+									<!-- /.row -->
+									<div class="row">
+										<div class="col-sm-6 border-right">
+											<button type="button" class="btn btn-success btn-block btn-sm fa fa-step-backward" onclick="lastMonth()">&nbsp;上一月</button>
+										</div>
+										<div class="col-sm-6 border-right" style="text-align: right;">
+											<button type="button" class="btn btn-success btn-block btn-sm fa fa-step-forward" onclick="nextMonth()">&nbsp;下一月</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="margin-right: 1px;">
+							<div class="box box-primary box-solid">
+								<div class="box-header with-border">
+									<h3 class="box-title fa  fa-tag">&nbsp;&nbsp;往来账下载</h3>
+									<div class="box-tools pull-right">
+										<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+									</div>
+								</div>
+								<div class="box-body" style="text-align: center;">
+									<div class="row">
+										<div class="col-md-5">
+											<div class="form-group">
+
+												<div class="input-group">
+													<select class="form-control select2" style="width: 100%;" id="yearSel">
+													</select>
+												</div>
+											</div>
+
+											<!-- /.form-group -->
+										</div>
+										<div class="col-md-5">
+											<div class="form-group">
+												<div class="input-group">
+													<select class="form-control select2" style="width: 100%;" id="monthSel">
+						<!--								<option value="1">1月</option>
+														<option value="2">2月</option>
+														<option value="3">3月</option>
+														<option value="4">4月</option>
+														<option value="5">5月</option>
+														<option value="6">6月</option>
+														<option value="7">7月</option>
+														<option value="8">8月</option>
+														<option value="9">9月</option>
+														<option value="10">10月</option>
+														<option value="11">11月</option>
+														<option value="12">12月</option>-->
+													</select>
+
+												</div>
+											</div>
+											<!-- /.form-group -->
+										</div>
+										<div class="col-md-2">
+												<button type="submit" class="btn btn-sm btn-info pull-right" onclick="download()">下载</button>
+										</div>
+									</div>
+								</div>
+								<div class="box-footer small-box-footer">
+								
+								</div>
+							</div>
+						</div>
+						<!--
+						<div class="row" style="margin-right: 1px;">
+							<div class="box box-warning box-solid">
+								<div class="box-header with-border">
+									<h3 class="box-title fa fa-rmb">&nbsp;&nbsp;保底金额</h3> - 0元
+									<div class="box-tools pull-right">
+										<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+									</div>
+								</div>
+								<div class="box-body" style="text-align: center;">
+									<div class="input-group-sm input-group">
+										<span class="input-group-addon">¥</span>
+										<input type="text" class="input-sm form-control">
+										<span class="input-group-addon">.00</span>
+									</div>
+								</div>
+								<div class="box-footer ">
+									<button type="submit" class="btn btn-sm btn-info pull-right">保存</button>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="margin-right: 1px;">
+							<div class="info-box bg-red">
+								<span class="info-box-icon"><i class="fa fa-rmb"></i></span>
+
+								<div class="info-box-content">
+									<div class="col-sm-4">
+										<span class="info-box-text">帐户余额</span>
+										<span class="info-box-number">163,921</span>
+									</div>
+									<div class="col-sm-4">
+										<span class="info-box-text">总收入</span>
+										<span class="info-box-number">163,921</span>
+									</div>
+									<div class="col-sm-4">
+										<span class="info-box-text">总支出</span>
+										<span class="info-box-number">163,921</span>
+									</div>
+
+								</div>
+							 
+							</div>
+						</div>
+                     <-->
+						</-->
+					</div>
+
+				</div>
+			</section>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="../../JSLib/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../JSLib/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="../../JSLib/AdminLTE/dist/js/app.min.js"></script>
+<script src="../../JSLib/AdminLTE/dist/js/demo.js"></script>
+<script type="text/javascript" src="../../js/BPay/PayCurrent/Index.js?t= + new Date().getTime()"></script>

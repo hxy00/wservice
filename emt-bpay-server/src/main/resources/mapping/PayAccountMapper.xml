@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.emt.bpay.dao.mapper.PayAccountMapper">
+    <!--<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />-->
+
+    <select id="getAccountByPayeeId" resultType="map" parameterType="java.util.HashMap">
+        select id,payee_id,payee_name,agency_id,agency_name
+        from bPay_Account
+        where company_code=#{company_code} and payee_id=#{payee_id}
+    </select>
+
+    <select id="pageAccount" parameterType="com.emt.bpay.dao.pojo.PayAccountVO" resultType="map">
+        <!-- <include refid="page_begin_sql" />-->
+        select * from bPay_Account where 1 = 1
+        <if test="id != null and id != '' ">
+            and id = #{id}
+        </if>
+        <if test="company_code != null and company_code != '' ">
+            and company_code like '%'+#{company_code}+'%'
+        </if>
+        <if test="payee_id != null and payee_id != '' ">
+            and payee_id = #{payee_id}
+        </if>
+        <if test="account_id != null and account_id != '' ">
+            and account_id like '%'+#{account_id}+'%'
+        </if>
+        <if test="payee_name != null and payee_name != '' ">
+            and payee_name like '%'+#{payee_name}+'%'
+        </if>
+        <if test="account_name != null and account_name != '' ">
+            and account_name like '%'+#{account_name}+'%'
+        </if>
+        <if test="agency_name != null and agency_name != '' ">
+            and agency_name like '%'+#{agency_name}+'%'
+        </if>
+    </select>
+
+    <select id="setDeposit" parameterType="com.emt.bpay.dao.pojo.SetDepositVO" resultType="map">
+       begin transaction
+	     begin try
+	     	     declare @company_code varchar(12),  @payee_id varchar(50), @old_deposit int;
+	     	     select
+	     	          @company_code = company_code, @payee_id = payee_id, @old_deposit = deposit
+	     	     from bPay_Account
+	     	         where company_code = #{company_code } and payee_id  = #{payee_id};
+
+	     	     insert into bPay_Set_Deposit_Log
+				     (company_code, payee_id, old_deposit, new_deposit, create_oper, create_oper_id, create_ip)
+			     values
+				     (@company_code, @payee_id, @old_deposit, #{new_deposit}, #{create_oper}, #{create_oper_id}, #{create_ip});
+
+
+                 update bPay_Account set deposit = #{new_deposit}, update_oper = #{create_oper}, update_oper_id = #{create_oper_id}, update_time = getdate()
+                    where company_code = #{company_code } and payee_id  = #{payee_id}
+
+                 select  1  success;
+			     commit transaction
+             end try
+			   begin catch
+			       select  0  success;
+			        rollback transaction
+			  end catch
+    </select>
+
+    <select id="setAccountStatus" parameterType="com.emt.bpay.dao.pojo.SetAccountStatusVO" resultType="map">
+        begin transaction
+			  begin try
+					declare @company_code varchar(12),  @payee_id varchar(50), @old_account_status int;
+					select @company_code = company_code, @payee_id = payee_id, @old_account_status = account_status from bPay_Account where id = #{id};
+					insert into bPay_Set_Pay_Account_Status_Log
+					  (company_code, payee_id, old_account_status, new_account_status, create_oper, create_oper_id, create_ip)
+					values
+					   (@company_code, @payee_id, @old_account_status, #{new_account_status}, #{create_oper}, #{create_oper_id}, #{create_ip});
+
+					update    bPay_Account set account_status = #{new_account_status} where   id = #{id}
+					select  1  success;
+			        commit transaction
+			   end try
+			   begin catch
+			       select  0  success;
+			        rollback transaction
+			  end catch
+    </select>
+
+    <select id="LedgersByPayeeId" resultType="map">
+           select * from bPay_Ledgers where company_code = #{company_code} and payee_id = #{payee_id}
+     </select>
+
+</mapper>

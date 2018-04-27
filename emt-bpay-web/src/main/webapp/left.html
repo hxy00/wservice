@@ -1,0 +1,103 @@
+<style>
+    .styled-select select {
+        background: transparent;
+        font-size: 14px;
+
+        border: 0px solid #ccc;
+        height: 32px;
+        -webkit-appearance: none;
+        /*for chrome*/
+    }
+</style>
+<aside class="main-sidebar" style="padding-top: 0px;">
+    <div class="sidebar" id="scrollspy">
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="nav sidebar-menu">
+            <li class="header">菜单导航</li>
+            <div class="input-group styled-select">
+                <select class="form-control" style="width: 230px;">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+            <li class="active">
+                <a href="#introduction"><i class="fa fa-circle-o"></i> Introduction</a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>基础设置</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#" onclick="addTabs('payAccountManageView', '帐户管理', 'BPay/PayAccount/PayAccountManageView.html', true);"><i class="fa fa-circle-o"></i> 帐户管理</a></li>
+                    <li><a href="charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li><a href="charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                    <li><a href="charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#download"><i class="fa fa-circle-o"></i> Download</a>
+            </li>
+            <li>
+                <a href="#dependencies"><i class="fa fa-circle-o"></i> Dependencies</a>
+            </li>
+            <li>
+                <a href="#advice"><i class="fa fa-circle-o"></i> Advice</a>
+            </li>
+            <li>
+                <a href="#layout"><i class="fa fa-circle-o"></i> Layout</a>
+            </li>
+            <li>
+                <a href="#adminlte-options"><i class="fa fa-circle-o"></i> Javascript Options</a>
+            </li>
+            <li class="treeview" id="scrollspy-components">
+                <a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Components</a>
+                <ul class="nav treeview-menu">
+                    <li>
+                        <a href="#component-main-header">Main Header</a>
+                    </li>
+                    <li>
+                        <a href="#component-sidebar">Sidebar</a>
+                    </li>
+                    <li>
+                        <a href="#component-control-sidebar">Control Sidebar</a>
+                    </li>
+                    <li>
+                        <a href="#component-info-box">Info Box</a>
+                    </li>
+                    <li>
+                        <a href="#component-box">Boxes</a>
+                    </li>
+                    <li>
+                        <a href="#component-direct-chat">Direct Chat</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#plugins"><i class="fa fa-circle-o"></i> Plugins</a>
+            </li>
+            <li>
+                <a href="#browsers"><i class="fa fa-circle-o"></i> Browser Support</a>
+            </li>
+            <li>
+                <a href="#upgrade"><i class="fa fa-circle-o"></i> Upgrade Guide</a>
+            </li>
+            <li>
+                <a href="#implementations"><i class="fa fa-circle-o"></i> Implementations</a>
+            </li>
+            <li>
+                <a href="#faq"><i class="fa fa-circle-o"></i> FAQ</a>
+            </li>
+            <li>
+                <a href="#license"><i class="fa fa-circle-o"></i> License</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.emt.bpay.dao.mapper.PayCurrentMapper">
+
+    <select id="DocTypeGroupReport" resultType="map">
+        with t1 as (
+        select    isnull(SUM(credit), 0)  credit_sum, isnull(SUM(debit), 0) debit_sum from bPay_Current
+        where 1  = 1
+            <if test="companyCode != null and companyCode != '' ">
+                and  company_code = #{companyCode}
+            </if>
+            <if test="payeeId != null and payeeId != '' ">
+                and  payee_id = #{payeeId}
+            </if>
+            <if test="bDate != null and eDate != null">
+                and reg_time between #{bDate} and #{eDate}
+            </if>
+        ),
+        t2 as
+        (
+                select top 1  banlance from  bPay_Current where 1 = 1
+                <if test="companyCode != null and companyCode != '' ">
+                    and  company_code = #{companyCode}
+                </if>
+                <if test="payeeId != null and payeeId != '' ">
+                    and  payee_id = #{payeeId}
+                </if>
+                <if test="bDate != null and eDate != null">
+                    and reg_time between #{bDate} and #{eDate}
+                </if>  order by id desc
+        ) ,
+        t3 as (
+        select MAX(reg_time) last_date from  bPay_Current where 1 = 1
+                <if test="companyCode != null and companyCode != '' ">
+                    and  company_code = #{companyCode}
+                </if>
+                <if test="payeeId != null and payeeId != '' ">
+                    and  payee_id = #{payeeId}
+                </if>
+                <if test="bDate != null and eDate != null">
+                    <![CDATA[  and reg_time < '${bDate}'    ]]>
+                </if>
+        ),
+        t4 as (
+            select   banlance from bPay_Current  join t3 on t3.last_date = bPay_Current.reg_time
+            <if test="companyCode != null and companyCode != '' ">
+                and  company_code = #{companyCode}
+            </if>
+            <if test="payeeId != null and payeeId != '' ">
+                and  payee_id = #{payeeId}
+            </if>
+        ),
+        t5 as
+        (
+        select  isnull(isnull(sum(t2.banlance), (select banlance from t4) ), 0) banlance,
+           (select credit_sum from t1 ) credit_sum,(select debit_sum from t1 ) debit_sum
+          from t2
+        )
+        select * from t5
+
+    </select>
+
+    <select id="CurrentByPage" parameterType="com.emt.bpay.dao.pojo.PayCurrentVO" resultType="map">
+        select  id, doc_code,CONVERT(varchar(100), reg_time, 20)  reg_time, abstract, debit, credit,  banlance from bPay_Current   where 1 = 1
+
+        <if test="company_code != null and company_code != '' ">
+            and company_code = #{company_code}
+        </if>
+        <if test="payee_id != null and payee_id != '' ">
+            and payee_id = #{payee_id}
+        </if>
+        <if test="doc_code != null and doc_code != '' ">
+            and doc_code   like '%'+#{doc_code}+'%'
+        </if>
+        <if test="doc_type != null and doc_type != '' ">
+            and doc_type = #{doc_type}
+        </if>
+        <if test="begin_reg_time != null and begin_reg_time != ''  and end_reg_time != null and end_reg_time != '' " >
+            <![CDATA[  and  reg_time  between  '${begin_reg_time}'  and '${end_reg_time}'    ]]>
+        </if>
+
+        order by id desc
+    </select>
+
+</mapper>

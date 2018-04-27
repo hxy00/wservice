@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="emt-base" />
+        <module name="emt-bpay-feign" />
+        <module name="emt-bpay-server" />
+        <module name="emt-bpay-service" />
+        <module name="emt-bpay-web" />
+        <module name="emt-bpay-webui" />
+        <module name="emt-common" />
+        <module name="emt-config-server" />
+        <module name="emt-epay-server" />
+        <module name="emt-eureka-server" />
+        <module name="emt-gateway" />
+        <module name="emt-task" />
+        <module name="emt-turbine" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="emt" target="1.6" />
+      <module name="emt-base" target="1.6" />
+      <module name="emt-bpay-feign" target="1.6" />
+      <module name="emt-bpay-server" target="1.7" />
+      <module name="emt-bpay-service" target="1.6" />
+      <module name="emt-bpay-web" target="1.6" />
+      <module name="emt-bpay-webui" target="1.6" />
+      <module name="emt-common" target="1.6" />
+      <module name="emt-config-server" target="1.6" />
+      <module name="emt-epay-server" target="1.7" />
+      <module name="emt-eureka-server" target="1.6" />
+      <module name="emt-gateway" target="1.6" />
+      <module name="emt-task" target="1.6" />
+      <module name="emt-turbine" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

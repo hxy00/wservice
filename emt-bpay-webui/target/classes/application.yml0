@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: emt-bpay-web
+server:
+  port: 9000
+spring.cloud.

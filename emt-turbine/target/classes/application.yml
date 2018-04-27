@@ -1,0 +1,22 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: turbine
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+         defaultZone: http://127.0.0.1:8761/eureka/
+turbine:
+  aggregator:
+    clusterConfig: EMT-BPAY-SERVICE
+  appConfig: emt-bpay-service
+  clusterNameExpression: metadata['cluster']
+
+
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.emt.bpay.dao.mapper.PayCheckMapper">
+
+    <select id="getUnWithdrawMoney" resultType="map">
+      select company_code, payee_id, SUM(amount) amount
+          from bPay_Check
+      where end_id = 0
+          group by company_code, payee_id
+    </select>
+
+    <select id="buy" resultType="map" >
+            begin transaction
+                 begin try
+                  declare @success int;
+                  declare @num int;
+                  set @num = 0;
+
+                  select @num = num from buy_num;
+
+
+                  if (@num >  0)
+                  begin
+                     insert into buy_list
+                       (buy_code, num)
+                     values
+                       ( #{buy_time}, 1);
+                 update  buy_num set num =  num   - 1;
+
+                 set @success = 1
+              end
+              if (@num =  0)
+              begin
+                 print @num ;
+                 set  @success = -999999
+
+              end;
+
+              select  @success  success
+              commit transaction
+         end try
+         begin catch
+             select  0  success;
+             rollback transaction
+        end catch
+
+    </select>
+
+</mapper>

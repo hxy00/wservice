@@ -1,0 +1,6 @@
+com\emt\task\service\IBPayService.class
+com\emt\task\bPayTask.class
+com\emt\task\config\RedisConfig$1.class
+com\emt\task\service\BpayServiceClientHystrix.class
+com\emt\task\config\RedisConfig.class
+com\emt\task\taskApplication.class

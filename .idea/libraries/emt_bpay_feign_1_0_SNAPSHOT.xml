@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="emt-bpay-feign-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/emt-bpay-feign/target/emt-bpay-feign-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

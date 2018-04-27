@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.emt.bpay.dao.mapper.PayAccountCardMapper">
+
+    <insert id="Insert" parameterType="com.emt.bpay.dao.entity.PayAccountCard">
+        insert into bPay_Account_Card
+        (
+        company_code, payee_id,  bank_code, bank_name, bank_city_name, branch,branch_code,
+        is_same_city,is_prop, account_name,account_id,card_status, verification_code, create_oper, create_oper_id,
+        create_time
+        )
+        values
+        (
+        #{company_code},  #{payee_id},   #{bank_code},  #{bank_name},#{bank_city_name},
+        #{branch},#{branch_code},  #{is_same_city},  #{is_prop},  #{account_name},  #{account_id},
+        #{card_status},  #{verification_code},  #{create_oper}, #{create_oper_id},
+        getdate()
+        )
+    </insert>
+
+    <update id="Update" parameterType="com.emt.bpay.dao.entity.PayAccountCard">
+        insert into bPay_Account_Card_Log
+        (id,sn,alias,company_code,payee_id,bank_code,bank_name,bank_city_name,branch,branch_code,is_same_city,is_prop,
+        account_name,account_id,card_status,update_time,update_oper,update_oper_id,create_time,create_oper,create_oper_id,
+        delete_id,delete_oper,delete_oper_id,delete_time,remark,exp1,exp2,verification_code)
+        select
+        id,sn,alias,company_code,payee_id,bank_code,bank_name,bank_city_name,branch,branch_code,is_same_city,is_prop,
+        account_name,account_id,card_status,update_time,update_oper,update_oper_id,create_time,create_oper,create_oper_id,
+        delete_id,delete_oper,delete_oper_id,delete_time,remark,exp1,exp2,verification_code
+        from bPay_Account_Card where id = #{id} ;
+
+
+        update bPay_Account_Card set
+        company_code = #{company_code} , payee_id =  #{payee_id},  bank_code =  #{bank_code},
+        bank_name =  #{bank_name}, bank_city_name = #{bank_city_name}, branch = #{branch}, branch_code = #{branch_code},
+        is_same_city = #{is_same_city},is_prop = #{is_prop}, account_name = #{account_name},
+        account_id = #{account_id},card_status = #{card_status}, verification_code = #{verification_code},
+        update_oper=#{update_oper}, update_oper_id=#{update_oper_id},
+        update_time=getdate()  where id = #{id}
+    </update>
+
+    <update id="SetAliasOrDefault">
+        <if test="alias != null and alias != '' ">
+            update bPay_Account_Card set alias = #{alias} where company_code = #{company_code} and payee_id =
+            #{payee_id} and account_id = #{account_id}
+        </if>
+
+        <if test="default_id  > 0 ">
+            update bPay_Account_Card set default_id = 0 where company_code = #{company_code} and payee_id = #{payee_id}
+            and  <![CDATA[   account_id <> #{account_id} ]]> ;
+
+            update bPay_Account_Card set default_id = 1 where company_code = #{company_code} and payee_id = #{payee_id}
+            and account_id = #{account_id} ;
+        </if>
+
+    </update>
+
+    <update id="Delete" parameterType="com.emt.bpay.dao.entity.PayAccountCard">
+        update bPay_Account_Card set
+        delete_id = 1, delete_oper=#{delete_oper}, delete_oper_id = #{delete_oper_id}, delete_time=getdate()
+        where sn = #{sn}
+    </update>
+
+    <select id="loadBankCardByPayeeId" resultType="map" useCache="true" fetchSize="50">
+        select *  from bPay_Account_Card where delete_id = 0 and company_code = #{company_code}   and   payee_id = #{payee_id}
+    </select>
+
+    <select id="Select" resultType="map" parameterType="com.emt.bpay.dao.entity.PayAccountCard" useCache="true"
+            fetchSize="50">
+        select * from bPay_Account_Card where delete_id = 0
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="company_code != null and company_code != ''">
+            and company_code = #{company_code}
+        </if>
+        <if test="payee_id != null and payee_id != ''">
+            and payee_id = #{payee_id}
+        </if>
+        <if test="account_id != null and account_id != ''">
+            and account_id = #{account_id}
+        </if>
+        <if test="ExtSQL != null and ExtSQL != ''">
+            ${ExtSQL}
+        </if>
+
+    </select>
+
+    <select id="selectBankCardById" resultType="map" useCache="true" fetchSize="50">
+        select *  from bPay_Account_Card where delete_id = 0 and company_code = #{company_code}   and   payee_id = #{payee_id} and account_id = #{account_id}
+    </select>
+
+</mapper>

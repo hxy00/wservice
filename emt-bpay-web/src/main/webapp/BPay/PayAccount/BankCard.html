@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+		<link rel="stylesheet" href="../../JSLib/bootstrap3/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../../JSLib/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../../JSLib/Hui-iconfont/1.0.8/iconfont.css">
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../../JSLib/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css">
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/datatables/dataTables.bootstrap.css" />
+		<!-- bootstrap datepicker -->
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/datepicker/datepicker3.css">
+
+		<link rel="stylesheet" href="../../JSLib/AdminLTE/plugins/select2/select2.min.css">
+
+		<script type="text/javascript" src="../../JSLib/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../../JSLib/jquery.layout/jquery-ui-latest.js"></script>
+		<script type="text/javascript" src="../../JSLib/jquery.layout/jquery.layout-latest.js"></script>
+		<script type="text/jscript" src="../../JSLib/bootstrap3/js/bootstrap.js"></script>
+		<script type="text/javascript" src="../../JSLib/bootstrap3/js/closable-tab-div.js"></script>
+		<!-- bootstrap datepicker -->
+		<script src="../../JSLib/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
+		<script src="../../JSLib/AdminLTE/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+		<!-- Select2 -->
+		<script src="../../JSLib/AdminLTE/plugins/select2/select2.full.min.js"></script>
+		<script src="../../JSLib/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+		<script type="text/javascript" src="../../js/global.js"></script>
+		<script type="text/javascript" src="../../JSLib/FunctionJS.js"></script>
+	</head>
+
+	<body>
+		<div class="content-wrapper" style="margin-left: 0px;">
+			<section class="content-header">
+				<h1 class="box-title fa  fa-desktop">&nbsp;&nbsp;<b id="agencyNameLable">xxx</b>-<small id="payeeIdLable">xxx</small> </h1>
+
+			</section>
+			<section class="content">
+				<div class="row">
+					<div id="BankCardListDiv">
+
+					</div>
+					<div class="col-lg-3 col-xs-6" id="NewBankCard">
+						<!-- small box -->
+						<div class="small-box bg-gray">
+							<div class="inner">
+								<h3>银行卡</h3>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-credit-card"></i>
+							</div>
+							<a href="#" onclick="addBankCard()" class="small-box-footer">
+								新增 <i class="fa fa-plus-square"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="box box-primary">
+						<div class="box-header">
+							<h3 class="box-title">变更记录</h3>
+						</div>
+
+						<div class="box-body">
+							<table id="bankLogTable" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="50">操作</th>
+										<th width="100">提交时间</th>
+										<th width="28">类型</th>
+										<th width="110">银行名称</th>
+										<th width="110">银行账号</th>
+										<th width="180">银行帐户名称</th>
+										<th width="60">审核状态</th>
+										<th>审核情况</th>
+									</tr>
+								</thead>
+
+								<tfoot>
+
+								</tfoot>
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+	</body>
+
+	<div class="modal fade" id="BankCardModal" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">银行卡</h4>
+				</div>
+				<div class="modal-body">
+					<form enctype="multipart/form-data" id="mFormData">
+						<div class="form-group">
+							<label>银行名称</label>
+							<select class="form-control" id="bankNameSel">
+								<option value="">请选择</option>
+								<!--							<option value="中国工商银行">中国工商银行</option>
+								<option value="中国建设银行">中国建设银行</option>
+								<option value="中国农业银行">中国农业银行</option>
+								<option value="中国银行">中国银行</option>
+								<option value="招商银行">招商银行</option>
+								<option value="交通银行">交通银行</option>
+								<option value="中信银行">中信银行</option>
+								<option value="中国民生银行">中国民生银行</option>
+								<option value="兴业银行">兴业银行</option>
+								<option value="上海浦东发展银行">上海浦东发展银行</option>
+								<option value="中国光大银行">中国光大银行</option>
+								<option value="农村商业银行">农村商业银行</option>
+								<option value="广东发展银行">广东发展银行</option>
+								<option value="华夏银行">华夏银行</option>
+								<option value="农村信用合作社">农村信用合作社</option>
+								<option value="北京银行">北京银行</option>
+								<option value="国家邮政局邮政储汇局">国家邮政局邮政储汇局</option>
+								<option value="平安银行">平安银行</option>
+								<option value="渤海银行股份有限公司">渤海银行股份有限公司</option>
+								<option value="民生银行">民生银行</option>
+								<option value="光大银行">光大银行</option>
+								<option value="农村合作银行">农村合作银行</option>
+								<option value="上海银行">上海银行</option>
+								<option value="经销商编号">经销商编号</option>
+								<option value="青海银行">青海银行</option>-->
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="accountIdText">银行账号</label>
+							<input type="text" class="form-control" id="accountIdText" placeholder="银行账号" onkeyup="value=value.replace(/[^\d]/g,'')">
+							<input type="hidden" id="snText">
+						</div>
+						<div class="form-group">
+							<label for="accountNameText">银行帐户名称</label>
+							<input type="text" class="form-control" id="accountNameText" placeholder="银行帐户名称">
+						</div>
+						<div class="form-group">
+							<label for="branchText">开户支行</label>
+							<input type="text" class="form-control" id="branchText" placeholder="开户支行">
+						</div>
+						<div class="form-group">
+							<label for="branchCodeText">开户支行代码</label>
+							<input type="text" class="form-control" id="branchCodeText" placeholder="开户支行代码" onkeyup="value=value.replace(/[^\d]/g,'')">
+						</div>
+						<div class="form-group">
+							<label for="bankCityNameText">开户行所在城市</label>
+							<input type="text" class="form-control" id="bankCityNameText" placeholder="开户行所在城市">
+						</div>
+						<div class="form-group">
+							<label>对公对私标志</label>
+							<select class="form-control" id="isPropSel">
+								<option value="">请选择</option>
+								<option value="false">对公账户</option>
+								<option value="true">个人账户</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputFile">上传附件</label>
+							<input type="file" accept="image/x-png,image/gif,image/jpeg,image/bmp" id="exampleInputFile" onchange="fileChange(this);">
+
+							<p class="help-block">请上传申请附件</p>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+					<button id="saveBut" type="button" class="btn btn-primary" onclick="save()" id="submit_upload" data-loading-text="正在提交..." autocomplete="off">提交</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div class="modal fade" id="modal-default"  aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">正在提交</h4>
+				</div>
+				<div class="modal-body">
+					<div class="progress progress-sm active">
+						<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+							<span class="sr-only">20% Complete</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+</html>
+<script type="text/javascript" src="../../JSLib/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../JSLib/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="../../JSLib/AdminLTE/dist/js/app.min.js"></script>
+<script src="../../JSLib/AdminLTE/dist/js/demo.js"></script>
+<script type="text/javascript" src="../../js/BPay/PayAccount/BankCard.js?t= + new Date().getTime()"></script>

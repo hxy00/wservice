@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--扫描已经注册的bean-->
+    <context:component-scan base-package="com.emt.task">
+    </context:component-scan>
+    <!--创建指定线程池大小的ThreadPoolTaskScheduler实例-->
+    <task:scheduler id="myScheduler" pool-size="5"/>
+    <!--调度任务列表-->
+
+    <task:scheduled-tasks scheduler="myScheduler">
+        <task:scheduled ref="bPayTask" method="reportCurrentTime" fixed-delay="1000" initial-delay="1000"/>
+        <!--<task:scheduled ref="bPayTask" method="insertStack" fixed-delay="100" initial-delay="1000"/>-->
+    </task:scheduled-tasks>
+</beans>

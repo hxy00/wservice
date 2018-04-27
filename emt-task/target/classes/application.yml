@@ -1,0 +1,32 @@
+eureka:
+  client:
+    service-url:
+     defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      cluster: EMT-BPAY-SERVICE
+spring:
+  application:
+    name: emt-task
+  redis:
+    timeout: 0
+    database: 1
+    host: 121.199.67.158
+    port: 6379
+    password: 64b7726243b7493184b95124b45d3673
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+server:
+  port: 9000
+zuul:
+  routes:
+    bpay:
+      path: /bpay/**
+      serviceId: emt-bpay-feign
+  ignored-services: '*'
+  host:
+    max-total-connections: 500

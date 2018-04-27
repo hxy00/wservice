@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="emt-bpay-webui:war">
+    <output-path>$PROJECT_DIR$/emt-bpay-webui/target</output-path>
+    <root id="archive" name="emt-bpay-webui.war">
+      <element id="artifact" artifact-name="emt-bpay-webui:war exploded" />
+    </root>
+  </artifact>
+</component>

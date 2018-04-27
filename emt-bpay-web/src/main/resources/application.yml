@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: bpay-web
+server:
+  port: 8080
+  context-path: /webapp/WEB-INF/

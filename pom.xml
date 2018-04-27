@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>emt</groupId>
+    <artifactId>emt</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>emt-eureka-server</module>
+        <module>emt-base</module>
+        <module>emt-bpay-server</module>
+        <module>emt-common</module>
+        <!--<module>emt-config-server</module>-->
+        <module>emt-bpay-webui</module>
+        <module>emt-bpay-feign</module>
+        <module>emt-gateway</module>
+        <module>emt-bpay-web</module>
+        <module>emt-turbine</module>
+        <module>emt-task</module>
+        <module>emt-epay-server</module>
+
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>emt-base-release</id>
+            <name>emt base release</name>
+            <url>http://112.124.21.23:8081/nexus/content/repositories/emt-release/</url>
+        </repository>
+        <snapshotRepository>
+
+            <id>emt-base-snapshots</id>
+            <name>emt base snapshots</name>
+            <url>http://112.124.21.23:8081/nexus/content/repositories/emt-snapshots/</url>
+
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Brixton.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <repositories>
+       <repository>
+            <id>nexus-repos 02</id>
+            <name>Team Nexus Repository 02</name>
+            <url>http://112.124.21.23:8081/nexus/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>CN</id>
+            <name>OSChina Central</name>
+            <url>http://maven.oschina.net/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+<!--             <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j</artifactId>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+
+            </plugin>
+        </plugins>
+    </build>
+</project>

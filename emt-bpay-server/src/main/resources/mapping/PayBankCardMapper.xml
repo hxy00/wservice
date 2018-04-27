@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.emt.bpay.dao.mapper.PayAccountCardMapper">
+
+    <insert id="Insert" parameterType="com.emt.bpay.dao.entity.PayBankCardApply">
+        insert into bPay_Bank_Card_Apply
+        (
+        company_code, payee_id,  bank_code, bank_name, bank_city_name, branch,branch_code,
+        is_same_city,is_prop, account_name,account_id,card_status, verification_code, create_oper, create_oper_id,
+        create_time, ip
+        )
+        values
+        (
+        #{company_code},  #{payee_id},   #{bank_code},  #{bank_name},#{bank_city_name},
+        #{branch},#{branch_code},  #{is_same_city},  #{is_prop},  #{account_name},  #{account_id},
+        #{card_status},  #{verification_code},  #{create_oper}, #{create_oper_id},
+        getdate(), #{ip}
+        )
+    </insert>
+
+
+
+</mapper>
